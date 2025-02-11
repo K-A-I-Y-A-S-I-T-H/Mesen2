@@ -39,7 +39,7 @@ struct RewindStats
 class RewindManager : public INotificationListener, public IInputProvider, public IInputRecorder
 {
 public:
-	static constexpr int32_t BufferSize = 30; //Number of frames between each save state
+	static constexpr int32_t BufferSize = 1; //Number of frames between each save state
 
 private:
 	Emulator* _emu = nullptr;

@@ -22,7 +22,7 @@ namespace Mesen.Config
 	public class PreferencesConfig : BaseConfig<PreferencesConfig>
 	{
 		[Reactive] public MesenTheme Theme { get; set; } = MesenTheme.Light;
-		[Reactive] public bool AutomaticallyCheckForUpdates { get; set; } = true;
+		[Reactive] public bool AutomaticallyCheckForUpdates { get; set; } = false;
 		[Reactive] public bool SingleInstance { get; set; } = true;
 		[Reactive] public bool AutoLoadPatches { get; set; } = true;
 
@@ -49,11 +49,11 @@ namespace Mesen.Config
 		[Reactive] public bool AssociateCvRomFiles { get; set; } = false;
 		[Reactive] public bool AssociateWsRomFiles { get; set; } = false;
 
-		[Reactive] public bool EnableAutoSaveState { get; set; } = true;
+		[Reactive] public bool EnableAutoSaveState { get; set; } = false;
 		[Reactive] public UInt32 AutoSaveStateDelay { get; set; } = 5;
 
 		[Reactive] public bool EnableRewind { get; set; } = true;
-		[Reactive] public UInt32 RewindBufferSize { get; set; } = 300;
+		[Reactive] public UInt32 RewindBufferSize { get; set; } = 2048;
 
 		[Reactive] public bool AlwaysOnTop { get; set; } = false;
 

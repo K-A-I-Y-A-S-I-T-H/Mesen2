@@ -23,6 +23,7 @@ using DataBoxControl.Primitives;
 using DynamicData;
 using Mesen.Utilities;
 using ReactiveUI;
+using KeyEventArgs = Avalonia.Input.KeyEventArgs;
 
 namespace DataBoxControl;
 
@@ -317,9 +318,9 @@ public class DataBox : TemplatedControl
 		ProcessKeyPress(e.Text);
 	}
 
-	private void OnPreviewKeyDown(object? sender, KeyEventArgs e)
+	private void OnPreviewKeyDown(object? sender, Avalonia.Input.KeyEventArgs e)
 	{
-		if(e.Key == Key.Space && !DisableSearch) {
+		if(e.Key == Avalonia.Input.Key.Space && !DisableSearch) {
 			ProcessKeyPress(" ");
 			e.Handled = true;
 		} else if(IsKeyboardFocusWithin && TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is CheckBox) {

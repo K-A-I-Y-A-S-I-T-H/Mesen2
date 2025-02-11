@@ -2,9 +2,12 @@
 #include "pch.h"
 #include "miniz.h"
 
+//#define NO_MEMORY_COMPRESSION
+
 class CompressionHelper
 {
 public:
+#ifndef NO_MEMORY_COMPRESSION
 	static void Compress(string data, int compressionLevel, vector<uint8_t>& output)
 	{
 		unsigned long compressedSize = compressBound((unsigned long)data.size());
@@ -27,10 +30,10 @@ public:
 		memcpy(&decompressedSize, input.data(), sizeof(uint32_t));
 		memcpy(&compressedSize, input.data() + sizeof(uint32_t), sizeof(uint32_t));
 
-		if(decompressedSize >= 1024 * 1024 * 10 || compressedSize >= 1024 * 1024 * 10) {
-			//Limit to 10mb the data's size
-			return false;
-		}
+		//if(decompressedSize >= 1024 * 1024 * 10 || compressedSize >= 1024 * 1024 * 10) {
+		//	//Limit to 10mb the data's size
+		//	return false;
+		//}
 
 		output.resize(decompressedSize, 0);
 
@@ -41,4 +44,16 @@ public:
 
 		return true;
 	}
+#else
+	inline static void Compress(string data, int compressionLevel, vector<uint8_t>& output)
+	{
+		output = std::vector<uint8_t>(data.begin(), data.end());
+	}
+
+	inline static bool Decompress(vector<uint8_t>& input, vector<uint8_t>& output)
+	{
+		output = input;
+		return true;
+	}
+#endif
 };
