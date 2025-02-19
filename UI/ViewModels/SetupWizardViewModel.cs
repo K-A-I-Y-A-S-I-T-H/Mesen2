@@ -12,17 +12,17 @@ namespace Mesen.ViewModels
 {
 	public class SetupWizardViewModel : ViewModelBase
 	{
-		[Reactive] public bool StoreInUserProfile { get; set; } = true;
+		[Reactive] public bool StoreInUserProfile { get; set; } = false;
 
 		[Reactive] public bool EnableXboxMappings { get; set; } = true;
 		[Reactive] public bool EnablePsMappings { get; set; }
-		[Reactive] public bool EnableWasdMappings { get; set; }
-		[Reactive] public bool EnableArrowMappings { get; set; } = true;
+		[Reactive] public bool EnableWasdMappings { get; set; } = true;
+		[Reactive] public bool EnableArrowMappings { get; set; } 
 
 		[Reactive] public string InstallLocation { get; set; }
 
-		[Reactive] public bool CreateShortcut { get; set; } = true;
-		[Reactive] public bool CheckForUpdates { get; set; } = true;
+		[Reactive] public bool CreateShortcut { get; set; } = false;
+		[Reactive] public bool CheckForUpdates { get; set; } = false;
 		[Reactive] public bool IsOsx { get; set; } = OperatingSystem.IsMacOS();
 
 		public SetupWizardViewModel()
