@@ -134,8 +134,26 @@ namespace Mesen.Config
 		public static void ApplyXboxLayout(KeyMapping m, int player, ControllerType type, bool altLayout = false)
 		{
 			m.ClearKeys(type);
-
 			string prefix = "Pad" + (player + 1).ToString() + " ";
+
+			if(type == ControllerType.NesController || type == ControllerType.FamicomController) {
+
+				m.A = InputApi.GetKeyCode(prefix			+ (altLayout ?	"B" : "A"));
+				m.B = InputApi.GetKeyCode(prefix			+ (altLayout ?	"A" : "X"));
+				m.TurboA = InputApi.GetKeyCode(prefix  + (altLayout ?	"Y" : "B"));
+				m.TurboB = InputApi.GetKeyCode(prefix  + (altLayout ?	"X" : "Y"));
+
+				m.Select = InputApi.GetKeyCode(prefix	+					"Back");
+				m.Start = InputApi.GetKeyCode(prefix	+					"Start");
+
+				m.Up = InputApi.GetKeyCode(prefix		+					"LT Up");
+				m.Down = InputApi.GetKeyCode(prefix		+					"LT Down");
+				m.Left = InputApi.GetKeyCode(prefix		+					"LT Left");
+				m.Right = InputApi.GetKeyCode(prefix	+					"LT Right");
+
+				return;
+			}
+
 			m.A = InputApi.GetKeyCode(prefix + (altLayout ? "A" : "B"));
 			m.B = InputApi.GetKeyCode(prefix + (altLayout ? "X" : "A"));
 			m.Select = InputApi.GetKeyCode(prefix + "Back");
